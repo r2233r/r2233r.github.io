@@ -31,7 +31,10 @@
   <entry>
     <title>关于SSTI和flask的学习记录</title>
     <url>/2020/11/16/%E5%85%B3%E4%BA%8ESSTI%E5%92%8Cflask%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>python3.7</p>
+    <content><![CDATA[<p>ssti原理分析，flask入门</p>
+<a id="more"></a>
+
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>python3.7</p>
 <blockquote>
 <p>使用虚拟环境的好处是可以用多个python版本而不打架</p>
 <p>python -m env  +虚拟环境所在的文件夹 #所在目录就会生成一个文件夹，文件夹中包含有python运行需要的文件</p>
