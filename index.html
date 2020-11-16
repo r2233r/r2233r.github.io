@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next mist use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,22 +53,14 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+
+
+  <meta name="keywords" content="this is 2233" />
 
 
 
@@ -96,7 +88,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -181,7 +173,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -190,8 +182,18 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -201,9 +203,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -232,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/ter/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/16/%E5%85%B3%E4%BA%8ESSTI%E5%92%8Cflask%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="2233">
@@ -251,7 +287,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/05/30/ter/" itemprop="url">ter</a></h1>
+                <a class="post-title-link" href="/2020/11/16/%E5%85%B3%E4%BA%8ESSTI%E5%92%8Cflask%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url">关于SSTI和flask的学习记录</a></h1>
         
 
         <div class="post-meta">
@@ -263,8 +299,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-30T20:20:57+08:00">
-                2020-05-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-16T22:17:29+08:00">
+                2020-11-16
               </time>
             
 
@@ -303,27 +339,193 @@
       
         
           
-            <p>主题修改失败</p>
-<p>发布也报错</p>
-<p>原来是因为我tags:后面没加空格 啊啊啊忘了</p>
-<code>
+            <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>python3.7</p>
+<blockquote>
+<p>使用虚拟环境的好处是可以用多个python版本而不打架</p>
+<p>python -m env  +虚拟环境所在的文件夹 #所在目录就会生成一个文件夹，文件夹中包含有python运行需要的文件</p>
+<p>python 文件夹名/Scripts/activate.bat 就可以激活运行他了</p>
+<p>我本机电脑有python3 有pip有flask所以直接就使用的我自己的环境并没有使用虚拟环境</p>
+</blockquote>
+<p>模板涉及名词</p>
+<p><strong>渲染</strong>：给你一个模板，模板中的空填写上你的内容就叫渲染，比如这是一个模板，你想要将这个模板改成hello,最终呈现出hello的过程就叫渲染</p>
+<p><strong>路由</strong>：</p>
+<pre><code class="python">from flask import Flask
 
-<p><code>html</code></p>
-<p><code>&lt;?php phpinfo(); ``?&gt;</code></p>
-<p><code>HELLO</code></p>
-</code>
+app = Flask(__name__)
 
-<?php phpinfo(); ?>
+@app.route(&#39;/&#39;)//这是一个装饰器
+def index():
+    return &quot;hello world&quot;</code></pre>
+<p><a href="https://blog.csdn.net/xiangxianghehe/article/details/77170585" target="_blank" rel="noopener">装饰器</a>：</p>
+<p>作用：在更改原函数代码的情况下，修改函数的功能</p>
+<p>本质：参数为函数，返回值为函数的函数</p>
+<p>路由就是将路径和相应的函数对应起来，当你访问某个路径时，相应的函数就会执行</p>
+<h2 id="flask和jinja2模板学习"><a href="#flask和jinja2模板学习" class="headerlink" title="flask和jinja2模板学习"></a>flask和jinja2模板学习</h2><h4 id="flask"><a href="#flask" class="headerlink" title="flask"></a>flask</h4><p>学习文档：<a href="http://helloflask.com/downloads/flask-tutorial-2.0.pdf" target="_blank" rel="noopener">flask 入门</a></p>
+<p>涉及到数据库的部分，使用了slqlite，sqlite不需要启动服务器，适合开发使用</p>
+<p>这里的学习为了方便，直接<code>pip install sqlaichemy</code>装了个库，这个库可以让我们用类表示一张表，类属性来表示表的字段</p>
+<h4 id="jinja2"><a href="#jinja2" class="headerlink" title="jinja2"></a>jinja2</h4>{{}}: 表示变量<br/>
 
-<p><code>&lt;?php 1phpinfo();?&gt;</code></p>
-<pre><code>HHHH</code></pre><pre><code class="HTML">&lt;html&gt;
+{% %}：表示控制语句<br/>
 
-    &lt;head&gt;
+{# #}：表示注释<br/>
 
-    &lt;/head&gt;
-&lt;/html&gt;</code></pre>
-<pre><code class="HTML">HELL000
-​```</code></pre>
+<h4 id="其他模板"><a href="#其他模板" class="headerlink" title="其他模板"></a>其他模板</h4><p><img src="C:%5CUsers%5C%E5%AF%84%E5%BF%83%E4%BA%8E%E4%BD%A0%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201114131235132.png" alt="image-20201114131235132"></p>
+<h2 id="Flask-SSTI-漏洞原理"><a href="#Flask-SSTI-漏洞原理" class="headerlink" title="Flask SSTI 漏洞原理"></a>Flask SSTI 漏洞原理</h2><p><a href="https://xz.aliyun.com/t/7746" target="_blank" rel="noopener">参考文章 tql</a></p>
+<pre><code class="python">from flask import Flask,render_template_string,request
+from jinja2 import Template
+app = Flask(__name__)
+
+name=request.args.get(&#39;name&#39;)
+
+@route(&#39;/&#39;)
+def index():
+    t = Template(&#39;hello {{ %s }}&#39; % (name))
+    return t.render()
+
+if __name__=&#39;__main__&#39;:
+    app.run()
+#如果 name=1*8, 则显示：hello 8</code></pre>
+<p>模板注入，简单来说就是过于信任用户的输入，将用户的输入直接拼接到待渲染的模板中，最后造成ssti，如上所示。</p>
+<p>再看一下下面这段代码，</p>
+<pre><code class="python">from flask import Flask,render_template_string,request
+from jinja2 import Template
+app = Flask(__name__)
+
+name = request.args.get(&#39;name&#39;)
+
+@route(&#39;/&#39;)
+def index():
+    t = Template(&quot;hello,{{ name }}&quot;)
+    return t.render(name = name)
+
+if __name__=&#39;__main__&#39;:
+    app.run()
+# 如果 name=1*8，则结果显示 hello,1*8</code></pre>
+<p>这段代码先确定了模板，然后再将name放进模板，这样则不会存在ssti</p>
+<h2 id="SSTI-payload构造"><a href="#SSTI-payload构造" class="headerlink" title="SSTI payload构造"></a>SSTI payload构造</h2><h4 id="先了解下payload都是用什么构造的"><a href="#先了解下payload都是用什么构造的" class="headerlink" title="先了解下payload都是用什么构造的"></a>先了解下payload都是用什么构造的</h4><p><a href="https://xz.aliyun.com/t/6885#toc-5" target="_blank" rel="noopener">SSTI 深入学习</a></p>
+<p>简单的说就是使用的python原有的（内置的 builtins）属性来构造payload</p>
+<p>常用的以下这些属性：</p>
+<p>__class__:返回该对象所属的类</p>
+<p>__mro__:返回所有父类</p>
+<p>__subclasses__:返回所有子类</p>
+<p>__base__：返回直接继承的类也就是和mro有些类似，以字符串的形式</p>
+<p>__bases__: 同上，但是是以元组的形式</p>
+<p>__init__: 每个类都有的__init__方法</p>
+<p>__globals__: function.__globals__，获取function所处的空间下所有的模块方法变量，注意返回的是字典</p>
+<p>有了以上内容，可做如下测试验证，</p>
+<pre><code class="PYTHON">#注释处为曾测试过的内容，可根据自身情况修改
+class abc(object):
+    def __init__(self):
+        print(&#39;hello&#39;)
+        #print(__class__.__mro__[1].__subclasses__()) 显示出所有object下面的子类
+class abb(abc):
+    def __init__(self):
+        print(&quot;this is the son&quot;)
+        #print(__class__.__base__)
+class aba(abc):
+    def __init__(self):
+        print(&#39;this is the second child&#39;)
+#print(abc().__class__.__mro__[0].__subclasses__()[1].__init__.__globals__) 显示出了所有当前文档的可用内容
+#a = abb()
+#a = abc() output:hello </code></pre>
+<p>这里只做示例，读者可自行验证</p>
+<p>ps:</p>
+<p>现在接触到的有</p>
+<p>subprocess.Popen可以命令执行</p>
+<p>os.popen</p>
+<p>linecache内置了os模块</p>
+<h4 id="flask-ssti常见绕过姿势"><a href="#flask-ssti常见绕过姿势" class="headerlink" title="flask ssti常见绕过姿势"></a>flask ssti常见绕过姿势</h4><p><strong>request.args</strong>：flask获取参数的，request.args.a&amp;a=’123’，这样就相当于写了个123，这样可以使用他写很多东西了</p>
+<p><strong>chr、decode、replace</strong>：相当于编码绕过了</p>
+<p><strong>getitem</strong>:当不能使用中括号获取列表的值的时候可以用getitem</p>
+<p><strong>getattribute</strong>:可以获取到字典的value</p>
+<p><strong>绕过关键词</strong>：request.args/用+拼接字符串</p>
+<p>绕过姿势千千万，关键还是得自己对python熟悉，官方文档、dir()都是很不错的东西</p>
+<h5 id="注意-py2-和-py3-有一些区别"><a href="#注意-py2-和-py3-有一些区别" class="headerlink" title="注意:py2 和 py3 有一些区别"></a>注意:py2 和 py3 有一些区别</h5><h2 id="CTF题目学习"><a href="#CTF题目学习" class="headerlink" title="CTF题目学习"></a>CTF题目学习</h2><h3 id="Cookie-is-so-subtle"><a href="#Cookie-is-so-subtle" class="headerlink" title="Cookie is so subtle!"></a>Cookie is so subtle!</h3><p>新奇点：在cookie处模板注入</p>
+<h3 id="ciscn-华东南-double-secret"><a href="#ciscn-华东南-double-secret" class="headerlink" title="ciscn 华东南 double secret"></a>ciscn 华东南 double secret</h3><p>buu有原题环境</p>
+<p>知识点：RC4加密，ssti</p>
+<p>整个题目就是很普通的ssti加上了一个rc4的壳子，看源码有点唬人,以为safe会做些什么事情，结果可能就是</p>
+<p><img src="C:%5CUsers%5C%E5%AF%84%E5%BF%83%E4%BA%8E%E4%BD%A0%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201114142451063.png" alt="image-20201114142451063"></p>
+<p>RC4 ，算是对称加密算法那种的，用同一个密钥进行加解密</p>
+<p>还学会了一个<a href="https://www.cnblogs.com/gambler/p/9075415.html" target="_blank" rel="noopener">知识点</a></p>
+<p>做完题了，来重新思考，为什么输入加密内容，他就能回显出原文，使用加密脚本二次加密是不会显示出原文的，也就说明不是加密两次就是原文，感觉可能是使用的上面那个知识点异或两次会产生原文</p>
+<h4 id="jsonhub"><a href="#jsonhub" class="headerlink" title="jsonhub"></a>jsonhub</h4><p><a href="https://ctftime.org/writeup/22159" target="_blank" rel="noopener">https://ctftime.org/writeup/22159</a></p>
+<p>师傅们真是太强了</p>
+<h4 id="上海市啥比赛-web3"><a href="#上海市啥比赛-web3" class="headerlink" title="上海市啥比赛 web3"></a>上海市啥比赛 web3</h4><pre><code class="PYTHON">from flask import Flask,request,render_template
+from jinja2 import Template
+import os
+
+app = Flask(__name__)
+
+f = open(&#39;/flag&#39;,&#39;r&#39;)
+flag = f.read()
+@app.route(&#39;/&#39;,methods=[&#39;GET&#39;,&#39;POST&#39;])
+def home():
+    name = request.args.get(&quot;name&quot;) or &quot;&quot;
+    print(name)
+    if name:
+        return render_template(&#39;index.html&#39;,name=name)# render_template_string是字符串模板渲染，模板是用字符串的形式给出的，而render_template则是渲染指定的模板文件
+    else:
+        return render_template(&#39;index.html&#39;)
+
+@app.route(&#39;/help&#39;,methods=[&#39;GET&#39;])
+def help():
+    help = &#39;&#39;&#39;
+    &#39;&#39;&#39;
+        return f.read()
+
+@app.errorhandler(404)
+def page_not_found(e):
+    #No way to get flag!
+    os.system(&#39;rm -f /flag&#39;)
+    url = name = request.args.get(&quot;name&quot;) or &quot;&quot;
+    # r = request.path
+    r = request.data.decode(&#39;utf8&#39;)
+    if &#39;eval&#39; in r or &#39;popen&#39; in r or &#39;{{&#39; in r:
+        t = Template(&quot; Not found!&quot;)
+        return render_template(t), 404
+    t = Template(r + &quot; Not found!&quot;)
+    return render_template(t), 404
+
+
+if __name__ == &#39;__main__&#39;:
+    app.run(host=&#39;0.0.0.0&#39;,port=8888)</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>发现学习漏洞，还是要多<strong>动手敲代码</strong>，既熟悉了代码，又能更加深入理解漏洞原理</p>
+<p>至于如何利用漏洞，如何构造payload还是要多看<strong>官方文档</strong>，知道了更多的类和方法，才能灵活的做自己想做的事情</p>
+<h2 id="参考文章理解"><a href="#参考文章理解" class="headerlink" title="参考文章理解"></a>参考文章理解</h2><p><a href="https://northity.com/2018/10/17/%E6%B5%85%E6%9E%90SSTI/#%E6%80%BB%E7%BB%93" target="_blank" rel="noopener">浅析SSTI</a></p>
+<p>这篇文章中，有个题目的代码如下</p>
+<pre><code class="python">@app.route(&#39;/&#39;)
+def index():
+    name  = request.args.get(&#39;name&#39;)
+    if not name:
+        return redirect(&#39;/?name=blacksheep&#39;)
+    if &quot;class&quot; in name:
+        return redirect(&#39;/?name=hacker&#39;)
+    html = template.format(myname = name)
+    return head + render_template_string(html) + foot</code></pre>
+<p>这里的format是字符串格式化函数，str.format()</p>
+<p>这个函数的常见用法是</p>
+<pre><code class="PYTHON">a = &quot;hello&quot;
+b = &quot;test&quot;
+print(&quot;this is a {0} {1}&quot;.format(a,b))#this is a hello test</code></pre>
+<p><a href="https://blog.csdn.net/jb19900111/article/details/20284083" target="_blank" rel="noopener">format函数</a>会将前面的字符串当成一个模板，根据传入的参数，对字符串进行格式化</p>
+<p>关于何为<a href="https://blog.csdn.net/achang21/article/details/6793450?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param" target="_blank" rel="noopener">函数内省</a>，也就是查看对象所有的信息，比如包含哪些方法</p>
+<p>常用内省方法：1.type/dir 2.getattr</p>
+<p>python中，一个下划线表示类中的私有方法，两个下划线表示类中的方法不能被子类覆盖，—name__这种四个下划线的，就是本地函数调用的魔术方法之类的</p>
+<p><a href="https://www.cnblogs.com/icez/p/ssti_check_payload.html" target="_blank" rel="noopener">各种模板注入检测</a></p>
+<p>值得看一看的文章</p>
+<p><a href="https://xz.aliyun.com/t/6885#toc-5" target="_blank" rel="noopener">https://xz.aliyun.com/t/6885#toc-5</a></p>
+<p><a href="https://www.jianshu.com/p/183581381c4f" target="_blank" rel="noopener">https://www.jianshu.com/p/183581381c4f</a></p>
+<p><a href="https://www.colabug.com/2020/0316/7127106/" target="_blank" rel="noopener">https://www.colabug.com/2020/0316/7127106/</a></p>
+<p><a href="https://www.jianshu.com/p/a736e39c3510" target="_blank" rel="noopener">https://www.jianshu.com/p/a736e39c3510</a></p>
+<p><a href="https://www.k0rz3n.com/2018/11/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E7%90%86%E8%A7%A3%E6%BC%8F%E6%B4%9E%E4%B9%8BSSTI%E6%BC%8F%E6%B4%9E/#2-Flask-Jinja2" target="_blank" rel="noopener">https://www.k0rz3n.com/2018/11/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E7%90%86%E8%A7%A3%E6%BC%8F%E6%B4%9E%E4%B9%8BSSTI%E6%BC%8F%E6%B4%9E/#2-Flask-Jinja2</a></p>
+<p><a href="https://blog.csdn.net/qq_43613772/article/details/107730809" target="_blank" rel="noopener">https://blog.csdn.net/qq_43613772/article/details/107730809</a></p>
+<p><a href="https://xz.aliyun.com/t/3679" target="_blank" rel="noopener">https://xz.aliyun.com/t/3679</a></p>
+<p><a href="https://blog.csdn.net/a3320315/article/details/104102979?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/a3320315/article/details/104102979?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param</a></p>
+<p><a href="https://www.freebuf.com/column/232197.html" target="_blank" rel="noopener">https://www.freebuf.com/column/232197.html</a></p>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#twig" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#twig</a></p>
+<p><a href="https://blog.csdn.net/a3320315/article/details/104102979?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/a3320315/article/details/104102979?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.channel_param</a></p>
+<p><a href="https://xz.aliyun.com/t/2308" target="_blank" rel="noopener">https://xz.aliyun.com/t/2308</a></p>
+<p><a href="https://www.anquanke.com/post/id/188172" target="_blank" rel="noopener">https://www.anquanke.com/post/id/188172</a></p>
 
           
         
@@ -442,155 +644,19 @@
 
       
         
-          
-            <p>第一个博客哈哈</p>
+          <p>第一个博客哈哈</p>
 <hr/>
 
 <p>本来顺风顺水的搭建，由于GitHub之前的用户名包含大写，而url又不区分大小写，导致访问不了（我猜是这个原因）</p>
 <p>然后傻乎乎的把hexo全删了重装。。。</p>
 <p>结果就碰到了些问题，在这总结下</p>
-<hr/>
-
-<p>首先hexo的一些<a href="https://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="noopener">指令</a>参考了这个链接,在git上输入指令 </p>
-<p><code>hexo new &quot;postName&quot; #新建文章</code></p>
-<p><code>hexo new page &quot;pageName&quot; #新建页面</code> </p>
-<p><code>hexo generate #生成静态页面至public目录</code></p>
-<p><code>hexo server #开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）</code></p>
-<p><code>hexo deploy #将.deploy目录部署到</code> </p>
-<p><code>GitHub hexo help  # 查看帮助</code></p>
-<p><code>hexo version  #查看Hexo的版本</code></p>
-<p><a href="https://www.cnblogs.com/guide2it/p/11111715.html" target="_blank" rel="noopener">https://www.cnblogs.com/guide2it/p/11111715.html</a></p>
-<p><a href="https://www.cnblogs.com/thanksblog/p/12900165.html" target="_blank" rel="noopener">https://www.cnblogs.com/thanksblog/p/12900165.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/03/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="2233">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="r2233r">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/03/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-03T14:35:48+08:00">
-                2020-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/03/postHAPPY/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -668,9 +734,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives%7C%7Carchive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -682,10 +748,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/Tags/index.html">
                   <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -738,7 +804,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -838,13 +904,6 @@
   
   
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
   
 
   
@@ -888,6 +947,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
